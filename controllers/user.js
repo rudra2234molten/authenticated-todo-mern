@@ -1,7 +1,6 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
-import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -54,6 +53,14 @@ export const login = async (req, res, next) => {
 export const getProfile = async (req, res, next) => {
   res.status(200).json({
     success: true,
+    user: req.user,
+  });
+};
+
+export const logout = (req, res) => {
+  res.status(200).clearCookie("token").json({
+    success: true,
+    message: "Logout Successs.",
     user: req.user,
   });
 };
