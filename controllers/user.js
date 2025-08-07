@@ -57,7 +57,7 @@ export const getProfile = async (req, res, next) => {
   });
 };
 
-export const logout = (req, res) => {
+export const logout = (req, res, next) => {
   res.status(200).clearCookie("token").json({
     success: true,
     message: "Logout Successs.",
